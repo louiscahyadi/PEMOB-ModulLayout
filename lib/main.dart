@@ -1,18 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tugas_modul_layout/screens/login_screen.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'screens/splash_screen.dart';
+import 'services/notification_service.dart';
+import 'utils/logger.dart';
 
-void main() {
+// fungsi utama aplikasi
+void main() async {
+  // memastikan binding flutter diinisialisasi
   WidgetsFlutterBinding.ensureInitialized();
+
+  // menginisialisasi logger
+  Logger.setMinLevel(LogLevel.debug);
+  Logger.info('Aplikasi dimulai');
+
+  // menginisialisasi format tanggal untuk locale indonesia
+  await initializeDateFormatting('id_ID', null);
+  Logger.info('Format tanggal Indonesia diinisialisasi');
+
+  // menginisialisasi service notifikasi
+  await NotificationService().initialize();
+
+  // emngatur tampilan UI sistem
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light,
     ),
   );
+
+  // menjalankan aplikasi
   runApp(const MyApp());
 }
 
+// widget utama aplikasi
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -45,8 +66,19 @@ class MyApp extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 12.0),
           ),
         ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            foregroundColor: const Color(0xFF706D54),
+          ),
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF706D54),
+          foregroundColor: Colors.white,
+          centerTitle: true,
+        ),
+        scaffoldBackgroundColor: const Color(0xFFF5F5F5),
       ),
-      home: const LoginScreen(),
+      home: const SplashScreen(),
     );
   }
 }
