@@ -66,22 +66,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
       _isLoading = true;
     });
 
-    // Simulate API call
-    await Future.delayed(const Duration(seconds: 1));
+    try {
+      // Simulate API call
+      await Future.delayed(const Duration(seconds: 1));
 
-    // In a real app, you would update the user profile here
+      // In a real app, you would update the user profile here
 
-    setState(() {
-      _isLoading = false;
-      _isEditing = false;
-    });
+      if (!mounted) {
+        return; // Periksa mounted sebelum menggunakan setState atau context
+      }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Profil berhasil diperbarui'),
-        backgroundColor: Color(0xFF706D54),
-      ),
-    );
+      setState(() {
+        _isLoading = false;
+        _isEditing = false;
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Profil berhasil diperbarui'),
+          backgroundColor: Color(0xFF706D54),
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Terjadi kesalahan'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
   @override
@@ -291,6 +310,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Expanded(
                 child: ElevatedButton(
                   onPressed: _isLoading ? null : _saveProfile,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF706D54),
+                  ),
                   child: _isLoading
                       ? const SizedBox(
                           height: 20,
