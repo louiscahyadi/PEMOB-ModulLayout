@@ -75,7 +75,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             },
             child: const Text(
               'OK',
-              style: TextStyle(color: Color(0xFF706D54)),
+              style: TextStyle(color: Color(0xFF1F2937)),
             ),
           ),
         ],
@@ -96,7 +96,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             },
             child: const Text(
               'OK',
-              style: TextStyle(color: Color(0xFF706D54)),
+              style: TextStyle(color: Color(0xFF1F2937)),
             ),
           ),
         ],
@@ -107,11 +107,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF9FAFB),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF706D54),
+        backgroundColor: const Color(0xFF1F2937),
         title: const Text('Pengaturan'),
         centerTitle: true,
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -124,7 +125,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.grey.shade300),
+                border: Border.all(color: Colors.grey.shade200),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,7 +182,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.grey.shade300),
+                border: Border.all(color: Colors.grey.shade200),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -263,6 +264,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF1F2937),
+                              foregroundColor: Colors.white,
+                            ),
                             onPressed: _isLoading ? null : _changePassword,
                             child: _isLoading
                                 ? const SizedBox(
@@ -271,7 +276,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     child: CircularProgressIndicator(
                                       strokeWidth: 2.0,
                                       valueColor: AlwaysStoppedAnimation<Color>(
-                                          Colors.white),
+                                          Color(0xFF1F2937)),
                                     ),
                                   )
                                 : const Text('Ubah Password'),
@@ -292,7 +297,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.grey.shade300),
+                border: Border.all(color: Colors.grey.shade200),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -328,7 +333,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           Icon(
                             Icons.arrow_forward_ios,
                             size: 16.0,
-                            color: Colors.grey.shade600,
+                            color: Colors.grey.shade700,
                           ),
                         ],
                       ),
@@ -348,7 +353,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           Icon(
                             Icons.arrow_forward_ios,
                             size: 16.0,
-                            color: Colors.grey.shade600,
+                            color: Colors.grey.shade700,
                           ),
                         ],
                       ),
@@ -383,7 +388,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   subtitle,
                   style: TextStyle(
                     fontSize: 12.0,
-                    color: Colors.grey.shade600,
+                    color: Colors.grey.shade700,
                   ),
                 ),
               ],
@@ -392,7 +397,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: const Color(0xFF706D54),
+            activeColor: const Color(0xFF374151),
           ),
         ],
       ),

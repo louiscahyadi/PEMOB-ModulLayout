@@ -43,9 +43,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF8F9FA), // Light gray background
       appBar: AppBar(
-        backgroundColor: const Color(0xFF706D54),
+        backgroundColor: const Color(0xFF1F2937), // Dark navy blue
         title: const Text('Lupa Password'),
         centerTitle: true,
       ),
@@ -131,6 +131,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF1F2937), // Dark navy blue
+                foregroundColor: Colors.white,
+              ),
               onPressed: _isLoading ? null : _resetPassword,
               child: _isLoading
                   ? const SizedBox(
@@ -155,7 +159,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       children: [
         const Icon(
           Icons.check_circle_outline,
-          color: Color(0xFF706D54),
+          color: Color(0xFF4B5563), // Professional gray
           size: 80.0,
         ),
         const SizedBox(height: 24.0),
@@ -179,6 +183,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF1F2937), // Dark navy blue
+              foregroundColor: Colors.white,
+            ),
             onPressed: () {
               Navigator.of(context).pop();
             },

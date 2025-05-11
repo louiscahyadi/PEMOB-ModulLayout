@@ -60,21 +60,22 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF9FAFB), // Updated to lighter background
       appBar: AppBar(
-        backgroundColor: const Color(0xFF706D54),
+        backgroundColor: const Color(0xFF1F2937), // Updated to main color
         title: const Text('Riwayat Transaksi'),
         centerTitle: true,
       ),
       body: _isLoading
           ? const Center(
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF706D54)),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    Color(0xFF374151)), // Updated to lighter shade
               ),
             )
           : RefreshIndicator(
               onRefresh: _loadTransactions,
-              color: const Color(0xFF706D54),
+              color: const Color(0xFF1F2937), // Updated to main color
               child: _transactions.isEmpty
                   ? const Center(
                       child: Text(

@@ -119,14 +119,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   ? const Center(
                       child: CircularProgressIndicator(
                         valueColor:
-                            AlwaysStoppedAnimation<Color>(Color(0xFF706D54)),
+                            AlwaysStoppedAnimation<Color>(Color(0xFF1F2937)),
                       ),
                     )
                   : _errorMessage != null
                       ? _buildErrorView()
                       : RefreshIndicator(
                           onRefresh: _loadData,
-                          color: const Color(0xFF706D54),
+                          color: const Color(0xFF1F2937),
                           child: SingleChildScrollView(
                             physics: const AlwaysScrollableScrollPhysics(),
                             padding: const EdgeInsets.all(16.0),
@@ -167,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // membangun app bar
   Widget _buildAppBar() {
     return Container(
-      color: const Color(0xFF706D54),
+      color: const Color(0xFF1F2937), // Main dark color for app bar
       width: double.infinity,
       padding: const EdgeInsets.symmetric(
         vertical: 16.0,
@@ -206,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             const Icon(
               Icons.error_outline,
-              color: Color(0xFF706D54),
+              color: Color(0xFF1F2937),
               size: 80.0,
             ),
             const SizedBox(height: 16.0),
@@ -280,7 +280,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFC9B194),
+                    color: const Color(
+                        0xFF374151), // Lighter shade for balance box
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                   child: Column(
@@ -291,6 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w500,
+                          color: Colors.white,
                         ),
                       ),
                       Text(
@@ -298,6 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -416,7 +419,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Text(
                   'Lihat Semua',
                   style: TextStyle(
-                    color: Color(0xFF706D54),
+                    color: Color(0xFF374151),
                   ),
                 ),
               ),
@@ -485,7 +488,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Container(
                   padding: const EdgeInsets.all(8.0),
                   decoration: const BoxDecoration(
-                    color: Color(0xFF706D54),
+                    color: Color(0xFF1F2937),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
@@ -510,7 +513,8 @@ class _HomeScreenState extends State<HomeScreen> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFA08963).withValues(alpha: 77), // 0.3 * 255 ≈ 77
+            color: const Color(0xFF4B5563)
+                .withOpacity(0.3), // Shadow color for bottom nav
             spreadRadius: 2,
             blurRadius: 8,
             offset: const Offset(0, -3),
@@ -554,12 +558,12 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             padding: const EdgeInsets.all(12.0),
             decoration: BoxDecoration(
-              color: const Color(0xFFC9B194),
+              color: const Color(0xFF1F2937), // Dark background for menu items
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: Icon(
               icon,
-              color: const Color(0xFF706D54),
+              color: Colors.white, // Updated color
               size: 28.0,
             ),
           ),
@@ -567,7 +571,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Text(
             label,
             style: const TextStyle(
-              color: Color(0xFF706D54),
+              color: Color(0xFF424769), // Updated color
               fontWeight: FontWeight.w500,
             ),
             textAlign: TextAlign.center,
@@ -590,14 +594,14 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Icon(
             icon,
-            color: const Color(0xFF706D54),
+            color: const Color(0xFF1F2937),
           ),
           const SizedBox(height: 4.0),
           Text(
             label,
             style: const TextStyle(
               fontSize: 12.0,
-              color: Color(0xFF706D54),
+              color: Color(0xFF1F2937),
             ),
           ),
         ],
@@ -613,11 +617,11 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF706D54),
+          color: const Color(0xFF1F2937),
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFFA08963).withValues(alpha: 77), // 0.3 * 255 ≈ 77
+              color: Colors.black.withOpacity(0.2),
               spreadRadius: 2,
               blurRadius: 8,
               offset: const Offset(0, 3),
@@ -651,7 +655,7 @@ class _HomeScreenState extends State<HomeScreen> {
               style: const TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF706D54),
+                color: Color(0xFF1F2937),
               ),
             ),
           ],
@@ -663,7 +667,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: const Text(
               'Tutup',
-              style: TextStyle(color: Color(0xFF706D54)),
+              style: TextStyle(color: Color(0xFF1F2937)),
             ),
           ),
         ],

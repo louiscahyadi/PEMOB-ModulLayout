@@ -80,7 +80,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF9FAFB), // Light gray background
       appBar: AppBar(
+        backgroundColor: const Color(0xFF1F2937), // Main dark color
         title: const Text('Koperasi Undiksha'),
       ),
       body: Center(
@@ -108,13 +110,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.all(12.0),
                     margin: const EdgeInsets.only(bottom: 16.0),
                     decoration: BoxDecoration(
-                      color: Colors.red.shade50,
+                      color: const Color(0xFFFEE2E2), // Lighter error red
                       borderRadius: BorderRadius.circular(4.0),
-                      border: Border.all(color: Colors.red.shade200),
+                      border: Border.all(
+                          color: const Color(0xFFFECACA)), // Error border
                     ),
                     child: Text(
                       _errorMessage!,
-                      style: TextStyle(color: Colors.red.shade700),
+                      style: const TextStyle(
+                          color: Color(0xFFB91C1C)), // Error text
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -172,6 +176,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             builder: (_) => const ForgotPasswordScreen()),
                       );
                     },
+                    style: TextButton.styleFrom(
+                      foregroundColor:
+                          const Color(0xFF1F2937), // Main dark color
+                    ),
                     child: const Text('Lupa Password?'),
                   ),
                 ),
@@ -181,7 +189,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: _isLoading ? null : _login,
                   style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF1F2937), // Main dark color
                     padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    elevation: 2,
                   ),
                   child: _isLoading
                       ? const SizedBox(
@@ -207,6 +217,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       MaterialPageRoute(builder: (_) => const RegisterScreen()),
                     );
                   },
+                  style: TextButton.styleFrom(
+                    foregroundColor: const Color(0xFF1F2937), // Main dark color
+                  ),
                   child: const Text('Belum punya akun? Daftar'),
                 ),
               ],

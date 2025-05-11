@@ -84,7 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Profil berhasil diperbarui'),
-          backgroundColor: Color(0xFF706D54),
+          backgroundColor: Color(0xFF1F2937),
         ),
       );
     } catch (e) {
@@ -116,9 +116,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF9FAFB),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF706D54),
+        backgroundColor: const Color(0xFF1F2937),
         title: const Text('Profil'),
         centerTitle: true,
         actions: [
@@ -153,7 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Container(
                         padding: const EdgeInsets.all(4.0),
                         decoration: const BoxDecoration(
-                          color: Color(0xFF706D54),
+                          color: Color(0xFF374151),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
@@ -175,7 +175,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.grey.shade300),
+                border: Border.all(color: const Color(0xFFE5E7EB)),
               ),
               child: _isEditing ? _buildEditForm() : _buildProfileInfo(user),
             ),
@@ -190,7 +190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 icon: const Icon(Icons.logout),
                 label: const Text('Logout'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red.shade600,
+                  backgroundColor: const Color(0xFFDC2626),
                 ),
               ),
             ),
@@ -224,8 +224,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             width: 120.0,
             child: Text(
               label,
-              style: TextStyle(
-                color: Colors.grey.shade600,
+              style: const TextStyle(
+                color: Color(0xFF6B7280),
               ),
             ),
           ),
@@ -311,7 +311,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: ElevatedButton(
                   onPressed: _isLoading ? null : _saveProfile,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF706D54),
+                    backgroundColor: const Color(0xFF1F2937),
                   ),
                   child: _isLoading
                       ? const SizedBox(

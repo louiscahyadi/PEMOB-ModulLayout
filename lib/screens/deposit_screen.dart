@@ -95,7 +95,7 @@ class _DepositScreenState extends State<DepositScreen> {
             },
             child: const Text(
               'OK',
-              style: TextStyle(color: Color(0xFF706D54)),
+              style: TextStyle(color: Color(0xFF1F2937)),
             ),
           ),
         ],
@@ -106,9 +106,9 @@ class _DepositScreenState extends State<DepositScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF9FAFB), // Light gray background
       appBar: AppBar(
-        backgroundColor: const Color(0xFF706D54),
+        backgroundColor: const Color(0xFF1F2937), // Primary dark color
         title: const Text('Deposito'),
         centerTitle: true,
       ),
@@ -128,15 +128,22 @@ class _DepositScreenState extends State<DepositScreen> {
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color(0xFF374151), // Lighter shade of primary
                 borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.grey.shade300),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: 1,
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
               child: Row(
                 children: [
                   const Icon(
                     Icons.account_balance_wallet,
-                    color: Color(0xFF706D54),
+                    color: Colors.white, // Updated color
                     size: 32.0,
                   ),
                   const SizedBox(width: 16.0),
@@ -147,6 +154,7 @@ class _DepositScreenState extends State<DepositScreen> {
                         'Saldo Anda',
                         style: TextStyle(
                           fontSize: 14.0,
+                          color: Colors.white, // Updated color
                         ),
                       ),
                       Text(
@@ -154,6 +162,7 @@ class _DepositScreenState extends State<DepositScreen> {
                         style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white, // Updated color
                         ),
                       ),
                     ],
@@ -173,12 +182,7 @@ class _DepositScreenState extends State<DepositScreen> {
                 border: Border.all(color: Colors.grey.shade300),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFFA08963).withValues(
-                      red: 160,  // 0xA0
-                      green: 137, // 0x89
-                      blue: 99,  // 0x63
-                      alpha: 77, // 0.3 * 255 ≈ 77
-                    ),
+                    color: Colors.black.withOpacity(0.05),
                     spreadRadius: 2,
                     blurRadius: 8,
                     offset: const Offset(0, 3),
@@ -275,6 +279,16 @@ class _DepositScreenState extends State<DepositScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: _isLoading ? null : _deposit,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      const Color(0xFF1F2937), // Primary dark color
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  elevation: 2,
+                ),
                 child: _isLoading
                     ? const SizedBox(
                         height: 20,
@@ -285,7 +299,13 @@ class _DepositScreenState extends State<DepositScreen> {
                               AlwaysStoppedAnimation<Color>(Colors.white),
                         ),
                       )
-                    : const Text('Setor'),
+                    : const Text(
+                        'Setor',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
               ),
             ),
           ],
@@ -303,7 +323,7 @@ class _DepositScreenState extends State<DepositScreen> {
           children: [
             const Icon(
               Icons.check_circle_outline,
-              color: Color(0xFF706D54),
+              color: Color(0xFF1F2937), // Primary dark color for success icon
               size: 80.0,
             ),
             const SizedBox(height: 24.0),

@@ -98,8 +98,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF9FAFB), // Light gray background
       appBar: AppBar(
+        backgroundColor: const Color(0xFF1F2937), // Primary dark color
         title: const Text('Daftar Akun'),
+        centerTitle: true,
+        elevation: 2,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
@@ -114,13 +118,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   padding: const EdgeInsets.all(12.0),
                   margin: const EdgeInsets.only(bottom: 16.0),
                   decoration: BoxDecoration(
-                    color: Colors.red.shade50,
+                    color: const Color(0xFFFEE2E2), // Light red background
                     borderRadius: BorderRadius.circular(4.0),
-                    border: Border.all(color: Colors.red.shade200),
+                    border: Border.all(
+                        color: const Color(0xFFFCA5A5)), // Light red border
                   ),
                   child: Text(
                     _errorMessage!,
-                    style: TextStyle(color: Colors.red.shade700),
+                    style: const TextStyle(
+                        color: Color(0xFFB91C1C)), // Dark red text
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -234,7 +240,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ElevatedButton(
                 onPressed: _isLoading ? null : _register,
                 style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      const Color(0xFF1F2937), // Primary dark color
                   padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  elevation: 2,
                 ),
                 child: _isLoading
                     ? const SizedBox(
@@ -258,6 +267,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
+                style: TextButton.styleFrom(
+                  foregroundColor:
+                      const Color(0xFF1F2937), // Primary dark color
+                ),
                 child: const Text('Sudah punya akun? Login'),
               ),
             ],

@@ -80,9 +80,9 @@ class _LoanScreenState extends State<LoanScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF9FAFB), // Updated to lighter grey
       appBar: AppBar(
-        backgroundColor: const Color(0xFF706D54),
+        backgroundColor: const Color(0xFF1F2937), // Updated to main dark color
         title: const Text('Pinjaman'),
         centerTitle: true,
       ),
@@ -102,9 +102,17 @@ class _LoanScreenState extends State<LoanScreen> {
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color(
+                    0xFF374151), // Updated to lighter variant of main color
                 borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.grey.shade300),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: 1,
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
               child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -361,7 +369,8 @@ class _LoanScreenState extends State<LoanScreen> {
                           _calculateMonthlyPayment(),
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF706D54),
+                            color: Color(
+                                0xFF374151), // Updated monthly payment text color
                           ),
                         ),
                       ],
@@ -375,6 +384,10 @@ class _LoanScreenState extends State<LoanScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      const Color(0xFF1F2937), // Updated button color
+                ),
                 onPressed: _isLoading ? null : _applyForLoan,
                 child: _isLoading
                     ? const SizedBox(
@@ -404,7 +417,7 @@ class _LoanScreenState extends State<LoanScreen> {
           children: [
             const Icon(
               Icons.check_circle_outline,
-              color: Color(0xFF706D54),
+              color: Color(0xFF374151), // Updated success icon color
               size: 80.0,
             ),
             const SizedBox(height: 24.0),

@@ -109,7 +109,7 @@ class _TransferScreenState extends State<TransferScreen> {
             },
             child: const Text(
               'OK',
-              style: TextStyle(color: Color(0xFF706D54)),
+              style: TextStyle(color: Color(0xFF1F2937)),
             ),
           ),
         ],
@@ -120,9 +120,10 @@ class _TransferScreenState extends State<TransferScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF3F4F6),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF706D54),
+        backgroundColor: const Color(0xFF1F2937),
+        elevation: 0,
         title: const Text('Transfer'),
         centerTitle: true,
       ),
@@ -142,15 +143,22 @@ class _TransferScreenState extends State<TransferScreen> {
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color(0xFF374151),
                 borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.grey.shade300),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: 1,
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
               child: Row(
                 children: [
                   const Icon(
                     Icons.account_balance_wallet,
-                    color: Color(0xFF706D54),
+                    color: Colors.white,
                     size: 32.0,
                   ),
                   const SizedBox(width: 16.0),
@@ -161,6 +169,7 @@ class _TransferScreenState extends State<TransferScreen> {
                         'Saldo Anda',
                         style: TextStyle(
                           fontSize: 14.0,
+                          color: Colors.white,
                         ),
                       ),
                       Text(
@@ -168,6 +177,7 @@ class _TransferScreenState extends State<TransferScreen> {
                         style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -332,6 +342,10 @@ class _TransferScreenState extends State<TransferScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: _isLoading ? null : _transfer,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF1F2937),
+                  foregroundColor: Colors.white,
+                ),
                 child: _isLoading
                     ? const SizedBox(
                         height: 20,
@@ -360,7 +374,7 @@ class _TransferScreenState extends State<TransferScreen> {
           children: [
             const Icon(
               Icons.check_circle_outline,
-              color: Color(0xFF706D54),
+              color: Color(0xFF059669),
               size: 80.0,
             ),
             const SizedBox(height: 24.0),
@@ -387,6 +401,10 @@ class _TransferScreenState extends State<TransferScreen> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF1F2937),
+                  foregroundColor: Colors.white,
+                ),
                 child: const Text('Kembali ke Beranda'),
               ),
             ),
