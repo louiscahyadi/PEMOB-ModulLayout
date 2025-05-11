@@ -72,8 +72,16 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
         });
       }
     } catch (e) {
-      print('Error withdrawing: $e');
-      _showErrorDialog('Terjadi kesalahan. Silakan coba lagi.');
+      debugPrint('Error during withdrawal: ${e.toString()}');
+      String errorMessage = 'Terjadi kesalahan saat melakukan penarikan.';
+
+      if (e is FormatException) {
+        errorMessage = 'Format jumlah penarikan tidak valid.';
+      } else if (e is Exception) {
+        errorMessage = e.toString();
+      }
+
+      _showErrorDialog(errorMessage);
       setState(() {
         _isLoading = false;
       });
