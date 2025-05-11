@@ -43,7 +43,14 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         _isLoading = false;
       });
     } catch (e) {
-      print('Error loading transactions: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Gagal memuat transaksi: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
       setState(() {
         _isLoading = false;
       });
