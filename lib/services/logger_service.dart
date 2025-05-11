@@ -8,11 +8,15 @@ class LoggerService {
     if (!_initialized) {
       Logger.root.level = Level.ALL;
       Logger.root.onRecord.listen((record) {
-        // Dalam mode development, tetap tampilkan di console
+        // menggunakan format yang konsisten untuk production dan development
+        String logMessage =
+            '${record.level.name}: ${record.time}: ${record.message}';
         if (const bool.fromEnvironment('dart.vm.product')) {
-          // TODO: Implement production logging (e.g., to file or service)
+          // menambahkan logging untuk production
+          // untuk kebutuhan, menulis ke file atau service monitoring
+          print(logMessage);
         } else {
-          print('${record.level.name}: ${record.time}: ${record.message}');
+          print(logMessage);
         }
       });
       _initialized = true;
