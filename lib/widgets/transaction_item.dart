@@ -136,7 +136,8 @@ class TransactionItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.3),
+        color: color
+            .withAlpha(51), // 0.2 opacity = 51 dalam skala alpha (255 * 0.2)
         shape: BoxShape.circle,
       ),
       child: Icon(
