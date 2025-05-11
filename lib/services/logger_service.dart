@@ -8,19 +8,21 @@ class LoggerService {
     if (!_initialized) {
       Logger.root.level = Level.ALL;
       Logger.root.onRecord.listen((record) {
-        // menggunakan format yang konsisten untuk production dan development
-        String logMessage =
-            '${record.level.name}: ${record.time}: ${record.message}';
-        if (const bool.fromEnvironment('dart.vm.product')) {
-          // menambahkan logging untuk production
-          // untuk kebutuhan, menulis ke file atau service monitoring
+        String logMessage = _formatLogMessage(record);
+        try {
           print(logMessage);
-        } else {
-          print(logMessage);
+        } catch (e) {
+          print('Logging failed: $e');
         }
       });
       _initialized = true;
     }
+  }
+
+  static String _formatLogMessage(LogRecord record) {
+    return '${record.level.name}: ${record.time}: ${record.message}'
+        '${record.error != null ? '\nError: ${record.error}' : ''}'
+        '${record.stackTrace != null ? '\nStack: ${record.stackTrace}' : ''}';
   }
 
   static void error(String message, [Object? error, StackTrace? stackTrace]) {
@@ -33,5 +35,9 @@ class LoggerService {
 
   static void warning(String message) {
     _logger.warning(message);
+  }
+
+  static void debug(String message) {
+    _logger.fine(message);
   }
 }
