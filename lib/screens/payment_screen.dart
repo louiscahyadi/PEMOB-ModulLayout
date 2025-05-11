@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/account.dart';
 import '../services/account_service.dart';
 import '../services/notification_service.dart';
+import '../services/logger_service.dart';
 import '../utils/currency_formatter.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -85,7 +86,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         });
       }
     } catch (e) {
-      print('Error making payment: $e');
+      LoggerService.error('Error making payment', e);
       _showErrorDialog('Terjadi kesalahan. Silakan coba lagi.');
       setState(() {
         _isLoading = false;
