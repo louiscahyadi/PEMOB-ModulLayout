@@ -125,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   CircleAvatar(
                     radius: 60,
                     backgroundColor: Colors.grey.shade200,
-                    backgroundImage: AssetImage('assets/images/user.png'),
+                    backgroundImage: const AssetImage('assets/images/user.png'),
                   ),
                   if (_isEditing)
                     Positioned(

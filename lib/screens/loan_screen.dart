@@ -36,7 +36,7 @@ class _LoanScreenState extends State<LoanScreen> {
     try {
       final amount = double.parse(_amountController.text.replaceAll('.', ''));
       const interestRate = 0.1; // 10% per year
-      final monthlyInterestRate = interestRate / 12;
+      const monthlyInterestRate = interestRate / 12;
 
       final numerator = amount *
           monthlyInterestRate *
