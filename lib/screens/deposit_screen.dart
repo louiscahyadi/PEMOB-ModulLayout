@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import '../models/account.dart';
 import '../services/account_service.dart';
 import '../services/notification_service.dart';
@@ -20,6 +21,7 @@ class _DepositScreenState extends State<DepositScreen> {
   final _formKey = GlobalKey<FormState>();
   final _amountController = TextEditingController();
   final _descriptionController = TextEditingController();
+  final _logger = Logger();
 
   final AccountService _accountService = AccountService();
   final NotificationService _notificationService = NotificationService();
@@ -72,7 +74,7 @@ class _DepositScreenState extends State<DepositScreen> {
         });
       }
     } catch (e) {
-      print('Error depositing: $e');
+      _logger.e('Error depositing: $e'); // Replace print with logger.e
       _showErrorDialog('Terjadi kesalahan. Silakan coba lagi.');
       setState(() {
         _isLoading = false;
