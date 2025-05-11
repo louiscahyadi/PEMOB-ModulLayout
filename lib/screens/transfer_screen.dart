@@ -40,7 +40,6 @@ class _TransferScreenState extends State<TransferScreen> {
   }
 
   Future<void> _transfer() async {
-    // Memvalidasi form sebelum melanjutkan
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -50,19 +49,30 @@ class _TransferScreenState extends State<TransferScreen> {
     });
 
     try {
-      final amount = double.parse(_amountController.text.replaceAll('.', ''));
+      // Perbaikan: Membersihkan format currency sebelum parsing
+      final cleanAmount =
+          _amountController.text.replaceAll(RegExp(r'[^0-9]'), '');
+      final amount = double.parse(cleanAmount);
+
+      // Validasi saldo sebelum transfer
+      if (amount > widget.account.balance) {
+        _showErrorDialog('Saldo tidak mencukupi');
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      }
 
       // Mensimulasikan transfer ke akun demo
       final success = await _accountService.transfer(
         widget.account.id,
-        'account2', // Menggunakan akun penerima demo
+        'account2',
         _recipientNameController.text,
         amount,
         _descriptionController.text,
       );
 
       if (success) {
-        // Menampilkan notifikasi setelah transfer berhasil
         await _notificationService.showTransactionNotification(
           'Transfer Berhasil',
           'Transfer sebesar ${CurrencyFormatter.format(amount)} ke ${_recipientNameController.text} berhasil',
@@ -79,11 +89,9 @@ class _TransferScreenState extends State<TransferScreen> {
         });
       }
     } catch (e) {
-      // Mencatat error ke log untuk debugging
       debugPrint('Transfer error: ${e.toString()}');
       String errorMessage = 'Terjadi kesalahan pada sistem.';
 
-      // Menangani berbagai jenis error yang mungkin terjadi
       if (e is FormatException) {
         errorMessage = 'Format jumlah transfer tidak valid.';
       } else if (e is NetworkException) {
@@ -142,7 +150,6 @@ class _TransferScreenState extends State<TransferScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Menampilkan informasi saldo pengguna
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -188,10 +195,7 @@ class _TransferScreenState extends State<TransferScreen> {
                 ],
               ),
             ),
-
             const SizedBox(height: 24.0),
-
-            // Membuat form input transfer
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -281,12 +285,16 @@ class _TransferScreenState extends State<TransferScreen> {
                       }
 
                       try {
-                        final amount = double.parse(value.replaceAll('.', ''));
+                        final cleanValue =
+                            value.replaceAll(RegExp(r'[^0-9]'), '');
+                        final amount = double.parse(cleanValue);
+
                         if (amount <= 0) {
                           return 'Jumlah transfer harus lebih dari 0';
                         }
+
                         if (amount > widget.account.balance) {
-                          return 'Saldo tidak mencukupi';
+                          return 'Saldo tidak mencukupi untuk melakukan transfer sebesar ${CurrencyFormatter.format(amount)}';
                         }
                       } catch (e) {
                         return 'Jumlah transfer tidak valid';
@@ -295,11 +303,11 @@ class _TransferScreenState extends State<TransferScreen> {
                       return null;
                     },
                     onChanged: (value) {
-                      // Memformat currency saat pengguna mengetik
                       if (value.isNotEmpty) {
                         try {
-                          final amount =
-                              double.parse(value.replaceAll('.', ''));
+                          final cleanValue =
+                              value.replaceAll(RegExp(r'[^0-9]'), '');
+                          final amount = double.parse(cleanValue);
                           final formatted = CurrencyFormatter.format(amount)
                               .replaceAll('Rp. ', '');
 
@@ -308,9 +316,7 @@ class _TransferScreenState extends State<TransferScreen> {
                             selection: TextSelection.collapsed(
                                 offset: formatted.length),
                           );
-                        } catch (e) {
-                          // Mengabaikan error format
-                        }
+                        } catch (e) {}
                       }
                     },
                   ),
@@ -338,9 +344,7 @@ class _TransferScreenState extends State<TransferScreen> {
                 ],
               ),
             ),
-
             const SizedBox(height: 24.0),
-
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(

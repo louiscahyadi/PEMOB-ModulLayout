@@ -246,10 +246,11 @@ class AccountService {
         return false;
       }
 
-      // memeriksa apakah saldo mencukupi
-      if (fromAccount.balance < amount) {
+      // Perbaikan: Pastikan saldo diambil dengan benar dan perbandingan yang tepat
+      final currentBalance = fromAccount.balance.toDouble();
+      if (currentBalance < amount) {
         Logger.warning(
-            'AccountService: Saldo tidak mencukupi untuk transfer: ${fromAccount.balance} < $amount');
+            'AccountService: Saldo tidak mencukupi untuk transfer: $currentBalance < $amount');
         return false;
       }
 
