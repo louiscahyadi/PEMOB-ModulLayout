@@ -171,6 +171,19 @@ class _DepositScreenState extends State<DepositScreen> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8.0),
                 border: Border.all(color: Colors.grey.shade300),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFFA08963).withValues(
+                      red: 160,  // 0xA0
+                      green: 137, // 0x89
+                      blue: 99,  // 0x63
+                      alpha: 77, // 0.3 * 255 ≈ 77
+                    ),
+                    spreadRadius: 2,
+                    blurRadius: 8,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
