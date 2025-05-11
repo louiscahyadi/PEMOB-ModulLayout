@@ -510,9 +510,9 @@ class _HomeScreenState extends State<HomeScreen> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(),
-            spreadRadius: 1,
-            blurRadius: 5,
+            color: const Color(0xFFA08963).withValues(alpha: 77), // 0.3 * 255 ≈ 77
+            spreadRadius: 2,
+            blurRadius: 8,
             offset: const Offset(0, -3),
           ),
         ],
@@ -617,7 +617,7 @@ class _HomeScreenState extends State<HomeScreen> {
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFFA08963).withOpacity(0.3),
+              color: const Color(0xFFA08963).withValues(alpha: 77), // 0.3 * 255 ≈ 77
               spreadRadius: 2,
               blurRadius: 8,
               offset: const Offset(0, 3),
