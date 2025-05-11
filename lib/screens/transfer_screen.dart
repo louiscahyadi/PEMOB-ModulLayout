@@ -40,6 +40,7 @@ class _TransferScreenState extends State<TransferScreen> {
   }
 
   Future<void> _transfer() async {
+    // Memvalidasi form sebelum melanjutkan
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -51,17 +52,17 @@ class _TransferScreenState extends State<TransferScreen> {
     try {
       final amount = double.parse(_amountController.text.replaceAll('.', ''));
 
-      // For demo purposes, we'll simulate a transfer to a demo account
+      // Mensimulasikan transfer ke akun demo
       final success = await _accountService.transfer(
         widget.account.id,
-        'account2', // Demo recipient account
+        'account2', // Menggunakan akun penerima demo
         _recipientNameController.text,
         amount,
         _descriptionController.text,
       );
 
       if (success) {
-        // Show notification
+        // Menampilkan notifikasi setelah transfer berhasil
         await _notificationService.showTransactionNotification(
           'Transfer Berhasil',
           'Transfer sebesar ${CurrencyFormatter.format(amount)} ke ${_recipientNameController.text} berhasil',
@@ -78,9 +79,11 @@ class _TransferScreenState extends State<TransferScreen> {
         });
       }
     } catch (e) {
+      // Mencatat error ke log untuk debugging
       debugPrint('Transfer error: ${e.toString()}');
       String errorMessage = 'Terjadi kesalahan pada sistem.';
 
+      // Menangani berbagai jenis error yang mungkin terjadi
       if (e is FormatException) {
         errorMessage = 'Format jumlah transfer tidak valid.';
       } else if (e is NetworkException) {
@@ -139,7 +142,7 @@ class _TransferScreenState extends State<TransferScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Saldo
+            // Menampilkan informasi saldo pengguna
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -188,7 +191,7 @@ class _TransferScreenState extends State<TransferScreen> {
 
             const SizedBox(height: 24.0),
 
-            // Form Transfer
+            // Membuat form input transfer
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -292,7 +295,7 @@ class _TransferScreenState extends State<TransferScreen> {
                       return null;
                     },
                     onChanged: (value) {
-                      // Format currency as user types
+                      // Memformat currency saat pengguna mengetik
                       if (value.isNotEmpty) {
                         try {
                           final amount =
@@ -306,7 +309,7 @@ class _TransferScreenState extends State<TransferScreen> {
                                 offset: formatted.length),
                           );
                         } catch (e) {
-                          // Ignore formatting errors
+                          // Mengabaikan error format
                         }
                       }
                     },

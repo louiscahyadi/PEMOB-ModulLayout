@@ -119,7 +119,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // General Settings
+            // mengatur bagian pengaturan umum aplikasi
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -176,7 +176,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
             const SizedBox(height: 24.0),
 
-            // Security Settings
+            // mengatur bagian keamanan dan autentikasi
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -291,7 +291,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
             const SizedBox(height: 24.0),
 
-            // About
+            // menampilkan informasi tentang aplikasi
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -368,6 +368,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  // membuat komponen switch dengan judul dan subtitle
   Widget _buildSwitchTile(
       String title, String subtitle, bool value, Function(bool) onChanged) {
     return Padding(
@@ -404,6 +405,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  // membuat komponen informasi dengan format judul dan nilai
   Widget _buildInfoTile(String title, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),

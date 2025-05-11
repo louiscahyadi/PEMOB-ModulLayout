@@ -31,7 +31,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       _isLoading = true;
     });
 
-    // Simulate API call
+    // memulai simulasi pemanggilan api
     await Future.delayed(const Duration(seconds: 2));
 
     setState(() {
@@ -43,9 +43,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FA), // Light gray background
+      backgroundColor: const Color(
+          0xFFF8F9FA), // mengatur warna latar belakang abu-abu terang
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1F2937), // Dark navy blue
+        backgroundColor:
+            const Color(0xFF1F2937), // mengatur warna header biru navy gelap
         title: const Text('Lupa Password'),
         centerTitle: true,
       ),
@@ -132,7 +134,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             width: double.infinity,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF1F2937), // Dark navy blue
+                backgroundColor:
+                    const Color(0xFF1F2937), // warna biru navy gelap
                 foregroundColor: Colors.white,
               ),
               onPressed: _isLoading ? null : _resetPassword,
@@ -159,7 +162,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       children: [
         const Icon(
           Icons.check_circle_outline,
-          color: Color(0xFF4B5563), // Professional gray
+          color: Color(0xFF4B5563), // warna abu-abu profesional
           size: 80.0,
         ),
         const SizedBox(height: 24.0),
@@ -184,7 +187,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           width: double.infinity,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF1F2937), // Dark navy blue
+              backgroundColor: const Color(0xFF1F2937), // warna biru navy gelap
               foregroundColor: Colors.white,
             ),
             onPressed: () {

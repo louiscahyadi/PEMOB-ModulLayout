@@ -57,7 +57,7 @@ class _DepositScreenState extends State<DepositScreen> {
       );
 
       if (success) {
-        // Show notification
+        // menampilkan notifikasi transaksi berhasil
         await _notificationService.showTransactionNotification(
           'Setoran Berhasil',
           'Setoran sebesar ${CurrencyFormatter.format(amount)} berhasil',
@@ -74,7 +74,8 @@ class _DepositScreenState extends State<DepositScreen> {
         });
       }
     } catch (e) {
-      _logger.e('Error depositing: $e'); // Replace print with logger.e
+      // mencatat error ke dalam log sistem
+      _logger.e('Error depositing: $e');
       _showErrorDialog('Terjadi kesalahan. Silakan coba lagi.');
       setState(() {
         _isLoading = false;
@@ -106,9 +107,10 @@ class _DepositScreenState extends State<DepositScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9FAFB), // Light gray background
+      backgroundColor: const Color(
+          0xFFF9FAFB), // mengatur warna latar belakang menjadi abu-abu terang
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1F2937), // Primary dark color
+        backgroundColor: const Color(0xFF1F2937), // mengatur warna utama gelap
         title: const Text('Deposito'),
         centerTitle: true,
       ),
@@ -124,7 +126,7 @@ class _DepositScreenState extends State<DepositScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Saldo
+            // menampilkan informasi saldo pengguna
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -173,7 +175,7 @@ class _DepositScreenState extends State<DepositScreen> {
 
             const SizedBox(height: 24.0),
 
-            // Form Deposit
+            // membuat formulir setoran
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -275,6 +277,7 @@ class _DepositScreenState extends State<DepositScreen> {
 
             const SizedBox(height: 24.0),
 
+            // membuat tombol setor
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(

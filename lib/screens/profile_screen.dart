@@ -67,13 +67,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
 
     try {
-      // Simulate API call
+      // mensimulasikan panggilan ke api
       await Future.delayed(const Duration(seconds: 1));
 
-      // In a real app, you would update the user profile here
+      // memperbarui profil pengguna di database (implementasi nyata)
 
       if (!mounted) {
-        return; // Periksa mounted sebelum menggunakan setState atau context
+        return; // memeriksa status mounted sebelum menggunakan setState
       }
 
       setState(() {
@@ -108,9 +108,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final user = _authService.currentUser;
 
     if (user == null) {
+      // menampilkan pesan ketika pengguna tidak ditemukan
       return const Scaffold(
         body: Center(
-          child: Text('User not found'),
+          child: Text('Pengguna tidak ditemukan'),
         ),
       );
     }
@@ -137,7 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Profile Image
+            // gambar profil
             Center(
               child: Stack(
                 children: [
@@ -169,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 24.0),
 
-            // User Info
+            // informasi pengguna
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -182,7 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 24.0),
 
-            // Logout Button
+            // tombol logout
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
@@ -300,7 +301,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onPressed: () {
                     setState(() {
                       _isEditing = false;
-                      _loadUserData(); // Reset to original data
+                      _loadUserData(); // mengatur ulang ke data asli
                     });
                   },
                   child: const Text('Batal'),

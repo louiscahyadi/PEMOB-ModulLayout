@@ -1,23 +1,23 @@
-// model untuk data rekening nasabah
-// unutk menyimpan informasi rekening seperti id, userId
-// nomor rekening, jenis rekening, dan saldo
+// mengimplementasikan model untuk mengelola data rekening nasabah.
+// model ini menyimpan dan mengelola informasi detail rekening seperti
+// ID rekening, ID pengguna, nomor rekening, jenis rekening, dan saldo.
 class Account {
-  // ID unik rekening
+  // menyimpan ID unik untuk mengidentifikasi rekening
   final String id;
 
-  // ID pengguna pemilik rekening
+  // menyimpan ID pengguna yang memiliki rekening ini
   final String userId;
 
-  // nomor rekening
+  // menyimpan nomor rekening yang digunakan untuk transaksi
   final String accountNumber;
 
-  // jenis rekening
+  // mendefinisikan jenis atau tipe rekening nasabah
   final String accountType;
 
-  // saldo rekening
+  // menyimpan jumlah saldo rekening yang dapat berubah
   double balance;
 
-  // constructor untuk membuat objek account baru
+  // menginisialisasi objek Account baru dengan parameter wajib
   Account({
     required this.id,
     required this.userId,
@@ -26,7 +26,7 @@ class Account {
     required this.balance,
   });
 
-  // membuat objek account dari JSON
+  // mengkonversi data JSON menjadi objek Account
   factory Account.fromJson(Map<String, dynamic> json) {
     return Account(
       id: json['id'],
@@ -37,7 +37,7 @@ class Account {
     );
   }
 
-  // mengubah objek account menjadi JSON
+  // mengkonversi objek Account menjadi format JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -48,7 +48,8 @@ class Account {
     };
   }
 
-  // mengubah objek account menjadi string untuk keperluan debugging
+  // menghasilkan representasi string dari objek Account
+  // untuk keperluan debugging dan logging
   @override
   String toString() {
     return 'Account(id: $id, userId: $userId, accountNumber: $accountNumber, accountType: $accountType, balance: $balance)';

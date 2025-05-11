@@ -55,7 +55,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
       );
 
       if (success) {
-        // Show notification
+        // Menampilkan notifikasi
         await _notificationService.showTransactionNotification(
           'Penarikan Berhasil',
           'Penarikan sebesar ${CurrencyFormatter.format(amount)} berhasil',
@@ -131,7 +131,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Saldo
+            // menampilkan informasi saldo pengguna
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -180,7 +180,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
             const SizedBox(height: 24.0),
 
-            // Form Withdraw
+            // membangun form input penarikan
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -277,6 +277,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
 
             const SizedBox(height: 24.0),
 
+            // menambahkan tombol untuk melakukan penarikan
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -303,6 +304,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
     );
   }
 
+  // membangun tampilan sukses setelah penarikan berhasil
   Widget _buildSuccessView() {
     return Center(
       child: Padding(

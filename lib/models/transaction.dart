@@ -1,44 +1,44 @@
-// enum untuk jenis-jenis transaksi
+// mendefinisikan jenis-jenis transaksi yang dapat dilakukan
 enum TransactionType {
-  // setoran/deposit
+  // menyimpan uang ke dalam rekening
   deposit,
 
-  // penarikan
+  // mengambil uang dari rekening
   withdrawal,
 
-  // transfer
+  // mengirim uang ke rekening lain
   transfer,
 
-  // pembayaran
+  // melakukan pembayaran untuk layanan atau produk
   payment,
 
-  // pinjaman
+  // mengajukan atau mencairkan pinjaman
   loan,
 }
 
-// enum untuk status transaksi
+// mendefinisikan status-status yang mungkin terjadi pada transaksi
 enum TransactionStatus {
-  // transaksi sedang diproses
+  // menandakan transaksi sedang dalam proses
   pending,
 
-  // transaksi berhasil
+  // menandakan transaksi telah berhasil diselesaikan
   completed,
 
-  // transaksi gagal
+  // menandakan transaksi mengalami kegagalan
   failed,
 
-  // transaksi dibatalkan
+  // menandakan transaksi telah dibatalkan
   cancelled,
 }
 
-// model untuk data transaksi keuangan
-// kelas ini menyimpan informasi transaksi seperti id, accountId
-// jenis transaksi, jumlah, deskripsi, waktu, status, dan informasi penerima
+// mengimplementasikan model data untuk mencatat transaksi keuangan
+// menyimpan detail transaksi seperti id, id rekening, jenis, jumlah
+// deskripsi, waktu, status, dan informasi penerima transfer
 class Transaction {
-  // ID unik transaksi
+  // id unik transaksi
   final String id;
 
-  // ID rekening yang melakukan transaksi
+  // id rekening yang melakukan transaksi
   final String accountId;
 
   // jenis transaksi
@@ -56,13 +56,13 @@ class Transaction {
   // status transaksi
   final TransactionStatus status;
 
-  // ID penerima
+  // id penerima
   final String? recipientId;
 
   // nama penerima
   final String? recipientName;
 
-  // constructor untuk membuat objek transaction baru
+  // konstruktor untuk membuat objek transaksi baru
   Transaction({
     required this.id,
     required this.accountId,
@@ -75,7 +75,7 @@ class Transaction {
     this.recipientName,
   });
 
-  // membuat objek transaction dari JSON
+  // membuat objek transaksi dari JSON
   factory Transaction.fromJson(Map<String, dynamic> json) {
     return Transaction(
       id: json['id'],
@@ -90,7 +90,7 @@ class Transaction {
     );
   }
 
-  // mengubah objek transaction menjadi JSON
+  // mengubah objek transaksi menjadi JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -105,7 +105,7 @@ class Transaction {
     };
   }
 
-  // mengubah objek transaction menjadi string untuk keperluan debugging
+  // mengubah objek transaksi menjadi string untuk keperluan debugging
   @override
   String toString() {
     return 'Transaction(id: $id, type: ${type.name}, amount: $amount, status: ${status.name})';

@@ -3,16 +3,16 @@ import '../models/transaction.dart';
 import '../utils/currency_formatter.dart';
 import '../utils/date_formatter.dart';
 
-// widget untuk menampilkan item transaksi
-// widget ini digunakan untuk menampilkan informasi transaksi
+// mengimplementasikan widget untuk menampilkan item transaksi dalam daftar
+// digunakan sebagai komponen untuk menampilkan informasi transaksi secara individual
 class TransactionItem extends StatelessWidget {
-  // objek transaksi yang akan ditampilkan
+  // menyimpan data transaksi yang akan ditampilkan
   final Transaction transaction;
 
-  // flag untuk menampilkan detail transaksi
+  // mengontrol tampilan detail transaksi
   final bool showDetails;
 
-  // constructor untuk membuat widget transactionItem
+  // menginisialisasi widget transaction item dengan data yang diperlukan
   const TransactionItem({
     super.key,
     required this.transaction,
@@ -105,7 +105,7 @@ class TransactionItem extends StatelessWidget {
     );
   }
 
-  // membangun ikon transaksi berdasarkan jenis transaksi
+  // membangun tampilan ikon berdasarkan tipe transaksi yang diberikan
   Widget _buildTransactionIcon() {
     IconData icon;
     Color color;
@@ -148,7 +148,7 @@ class TransactionItem extends StatelessWidget {
     );
   }
 
-  // mendapatkan judul transaksi berdasarkan jenis transaksi
+  // mengambil judul transaksi berdasarkan tipe transaksi yang ada
   String _getTransactionTitle() {
     switch (transaction.type) {
       case TransactionType.deposit:
@@ -166,25 +166,25 @@ class TransactionItem extends StatelessWidget {
     }
   }
 
-  // mendapatkan teks jumlah transaksi dengan format yang sesuai
+  // memformat teks jumlah transaksi dengan prefix yang sesuai
   String _getAmountText() {
     final prefix = _isIncoming() ? '+ ' : '- ';
     return prefix + CurrencyFormatter.format(transaction.amount);
   }
 
-  // mendapatkan warna untuk jumlah transaksi
+  // menentukan warna untuk jumlah transaksi berdasarkan tipe
   Color _getAmountColor() {
     return _isIncoming() ? Colors.green : Colors.red;
   }
 
-  // memeriksa apakah transaksi adalah transaksi masuk
+  // memeriksa apakah transaksi merupakan transaksi pemasukan
   bool _isIncoming() {
     return transaction.type == TransactionType.deposit ||
         (transaction.type == TransactionType.transfer &&
             transaction.recipientId == null);
   }
 
-  // menampilkan dialog detail transaksi
+  // menampilkan dialog bottom sheet untuk detail transaksi
   void _showTransactionDetails(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -244,7 +244,7 @@ class TransactionItem extends StatelessWidget {
     );
   }
 
-  // membangun item detail transaksi
+  // membangun tampilan item detail dengan label dan nilai
   Widget _buildDetailItem(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -273,7 +273,7 @@ class TransactionItem extends StatelessWidget {
     );
   }
 
-  // mendapatkan teks status transaksi
+  // mengambil teks status transaksi berdasarkan enum status
   String _getStatusText() {
     switch (transaction.status) {
       case TransactionStatus.pending:

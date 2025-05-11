@@ -5,25 +5,24 @@ import 'package:uuid/uuid.dart';
 import '../models/user.dart';
 import '../utils/logger.dart';
 
-// service untuk mengelola autentikasi pengguna
-// kelas ini menangani proses login, logout, registrasi
-// dan manajemen sesi pengguna
+// mengelola proses autentikasi pengguna
+// menangani operasi login, logout, registrasi dan manajemen sesi
 class AuthService {
-  // singleton pattern
+  // mengimplementasi pola singleton
   static final AuthService _instance = AuthService._internal();
   factory AuthService() => _instance;
   AuthService._internal();
 
   final Uuid _uuid = const Uuid();
 
-  // pengguna yang sedang login
+  // menyimpan data pengguna yang sedang aktif
   User? _currentUser;
 
-  // getter untuk mendapatkan pengguna yang sedang login
+  // mengakses data pengguna yang sedang aktif
   User? get currentUser => _currentUser;
 
-  // data pengguna demo
-  // dalam aplikasi nyata, ini akan diganti dengan database
+  // menyimpan data pengguna sementara
+  // catatan: pada implementasi nyata, gunakan database
   final Map<String, Map<String, String>> _users = {
     'user1': {
       'id': 'user1',
@@ -35,15 +34,15 @@ class AuthService {
     },
   };
 
-  // mengenkripsi password dengan SHA-256
+  // mengenkripsi password menggunakan algoritma SHA-256
   static String _hashPassword(String password) {
     final bytes = utf8.encode(password);
     final digest = sha256.convert(bytes);
     return digest.toString();
   }
 
-  // memeriksa apakah pengguna sudah login
-  // returns `true` jika pengguna sudah login, `false` jika belum
+  // memeriksa status login pengguna
+  // mengembalikan `true` jika pengguna sudah login, `false` jika belum
   Future<bool> isLoggedIn() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -79,8 +78,8 @@ class AuthService {
     return false;
   }
 
-  // melakukan proses login
-  // returns `true` jika login berhasil, `false` jika gagal
+  // melakukan proses login pengguna
+  // mengembalikan `true` jika login berhasil, `false` jika gagal
   Future<bool> login(String username, String password) async {
     try {
       Logger.info('AuthService: Mencoba login untuk username: $username');
@@ -132,8 +131,8 @@ class AuthService {
     }
   }
 
-  // melakukan proses logout
-  // returns `true` jika logout berhasil, `false` jika gagal
+  // melakukan proses logout pengguna
+  // mengembalikan `true` jika logout berhasil, `false` jika gagal
   Future<bool> logout() async {
     try {
       Logger.info('AuthService: Logout pengguna: ${_currentUser?.username}');
@@ -148,13 +147,13 @@ class AuthService {
   }
 
   // melakukan proses registrasi pengguna baru
-  // returns `true` jika registrasi berhasil, `false` jika gagal
+  // mengembalikan `true` jika registrasi berhasil, `false` jika gagal
   Future<bool> register(String username, String password, String name,
       String email, String phoneNumber) async {
     try {
       Logger.info('AuthService: Mencoba mendaftarkan pengguna baru: $username');
 
-      // Periksa apakah username sudah ada
+      // memeriksa apakah username sudah ada
       bool userExists = false;
       _users.forEach((_, data) {
         if (data['username'] == username) {
@@ -203,7 +202,7 @@ class AuthService {
   }
 
   // mengubah password pengguna
-  // returns `true` jika perubahan berhasil, `false` jika gagal
+  // mengembalikan `true` jika perubahan berhasil, `false` jika gagal
   Future<bool> changePassword(
       String currentPassword, String newPassword) async {
     try {

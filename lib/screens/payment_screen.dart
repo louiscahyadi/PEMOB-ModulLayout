@@ -69,7 +69,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
       );
 
       if (success) {
-        // Show notification
+        // menampilkan notifikasi
         await _notificationService.showTransactionNotification(
           'Pembayaran Berhasil',
           'Pembayaran $_selectedCategory sebesar ${CurrencyFormatter.format(amount)} berhasil',
@@ -137,7 +137,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Saldo
+            // menampilkan informasi saldo pengguna
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -186,7 +186,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
             const SizedBox(height: 24.0),
 
-            // Form Pembayaran
+            // membangun formulir pembayaran
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -278,7 +278,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       return null;
                     },
                     onChanged: (value) {
-                      // Format currency as user types
+                      // memformat mata uang saat pengguna mengetik
                       if (value.isNotEmpty) {
                         try {
                           final amount =
@@ -292,7 +292,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 offset: formatted.length),
                           );
                         } catch (e) {
-                          // Ignore formatting errors
+                          // mengabaikan kesalahan format
                         }
                       }
                     },
@@ -324,6 +324,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
             const SizedBox(height: 24.0),
 
+            // menampilkan tombol pembayaran
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(

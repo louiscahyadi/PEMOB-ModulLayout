@@ -60,9 +60,11 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9FAFB), // Updated to lighter background
+      backgroundColor: const Color(
+          0xFFF9FAFB), // mengatur warna latar belakang menjadi lebih terang
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1F2937), // Updated to main color
+        backgroundColor:
+            const Color(0xFF1F2937), // mengatur warna utama aplikasi
         title: const Text('Riwayat Transaksi'),
         centerTitle: true,
       ),
@@ -70,12 +72,12 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
           ? const Center(
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
-                    Color(0xFF374151)), // Updated to lighter shade
+                    Color(0xFF374151)), // mengatur warna indikator loading
               ),
             )
           : RefreshIndicator(
               onRefresh: _loadTransactions,
-              color: const Color(0xFF1F2937), // Updated to main color
+              color: const Color(0xFF1F2937), // menyesuaikan dengan warna utama
               child: _transactions.isEmpty
                   ? const Center(
                       child: Text(

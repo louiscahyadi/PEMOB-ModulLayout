@@ -5,23 +5,23 @@ import 'screens/splash_screen.dart';
 import 'services/notification_service.dart';
 import 'utils/logger.dart';
 
-// fungsi utama aplikasi
+// memulai eksekusi fungsi utama aplikasi secara asynchronous
 void main() async {
-  // memastikan binding flutter diinisialisasi
+  // menginisialisasi binding flutter untuk memastikan widget telah siap
   WidgetsFlutterBinding.ensureInitialized();
 
-  // menginisialisasi logger
+  // mengatur level minimum logger dan mencatat permulaan aplikasi
   Logger.setMinLevel(LogLevel.debug);
   Logger.info('Aplikasi dimulai');
 
-  // menginisialisasi format tanggal untuk locale indonesia
+  // mengonfigurasi format tanggal sesuai lokalisasi indonesia
   await initializeDateFormatting('id_ID', null);
   Logger.info('Format tanggal Indonesia diinisialisasi');
 
-  // menginisialisasi service notifikasi
+  // mempersiapkan layanan notifikasi aplikasi
   await NotificationService().initialize();
 
-  // emngatur tampilan UI sistem
+  // mengkustomisasi tampilan sistem ui
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -29,7 +29,7 @@ void main() async {
     ),
   );
 
-  // menjalankan aplikasi
+  // mengeksekusi aplikasi dengan widget utama
   runApp(const MyApp());
 }
 

@@ -1,9 +1,9 @@
 import 'package:intl/intl.dart';
 
-// utils untuk memformat angka menjadi format mata uang
+// mengimplementasikan utilitas untuk memformat nilai numerik menjadi format mata uang
 class CurrencyFormatter {
-  // memformat angka menjadi format mata uang rupiah
-  // returns string dalam format mata uang rupiah
+  // mengubah nilai numerik menjadi string format mata uang rupiah
+  // mengembalikan string dalam format mata uang rupiah lengkap dengan simbol
   static String format(double amount) {
     final formatter = NumberFormat.currency(
       locale: 'id_ID',
@@ -14,8 +14,8 @@ class CurrencyFormatter {
     return formatter.format(amount);
   }
 
-  // memformat angka menjadi format mata uang rupiah tanpa simbol
-  // returns string dalam format mata uang rupiah tanpa simbol
+  // mengubah nilai numerik menjadi string format mata uang rupiah
+  // mengembalikan string dalam format mata uang rupiah tanpa simbol mata uang
   static String formatWithoutSymbol(double amount) {
     final formatter = NumberFormat.currency(
       locale: 'id_ID',
@@ -26,10 +26,10 @@ class CurrencyFormatter {
     return formatter.format(amount).trim();
   }
 
-  // mengkonversi string format mata uang menjadi double
-  // returns nilai double dari string yang diformat
+  // mengkonversi string format mata uang menjadi nilai numerik
+  // mengembalikan nilai double dari string mata uang yang diinput
   static double parse(String formattedAmount) {
-    // menghapus semua karakter non-digit kecuali tanda desimal
+    // membersihkan string dari karakter non-numerik kecuali tanda desimal
     final cleanString = formattedAmount.replaceAll(RegExp(r'[^\d.]'), '');
     return double.parse(cleanString);
   }

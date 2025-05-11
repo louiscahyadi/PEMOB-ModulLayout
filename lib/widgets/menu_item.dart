@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-// widget untuk menampilkan item menu
-// widget ini digunakan untuk menampilkan menu dengan ikon dan label
+// mengimplementasikan widget untuk menampilkan item menu
+// menyediakan tampilan menu dengan kombinasi ikon dan label
 class MenuItem extends StatelessWidget {
-  // icon menu
+  // menyimpan data ikon yang akan ditampilkan
   final IconData icon;
 
-  // label menu
+  // menyimpan teks label untuk menu
   final String label;
 
-  // qarna menu
+  // menyimpan warna yang akan digunakan pada menu
   final Color color;
 
-  // callback saat menu ditekan
+  // menyediakan fungsi callback ketika menu ditekan
   final VoidCallback? onTap;
 
-  // constructor untuk membuat widget MenuItem
+  // menginisialisasi widget menu item dengan parameter yang diperlukan
   const MenuItem({
     super.key,
     required this.icon,

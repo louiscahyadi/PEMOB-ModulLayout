@@ -15,7 +15,7 @@ import '../screens/profile_screen.dart';
 import '../screens/settings_screen.dart';
 import '../widgets/transaction_item.dart';
 
-// layar beranda aplikasi
+// menampilkan layar beranda aplikasi
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _loadData();
   }
 
-  // memuat data rekening dan transaksi
+  // mengambil data rekening dan transaksi dari server
   Future<void> _loadData() async {
     setState(() {
       _isLoading = true;
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  // melakukan logout
+  // menjalankan proses logout pengguna
   Future<void> _logout() async {
     try {
       Logger.info('HomeScreen: Melakukan logout');
@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  // menavigasi ke layar lain
+  // mengarahkan pengguna ke layar yang dipilih
   void _navigateToScreen(Widget screen) {
     Navigator.of(context)
         .push(
@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // app bar
+            // membuat komponen app bar
             _buildAppBar(),
 
             Expanded(
@@ -133,22 +133,22 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                // kartu profil pengguna
+                                // membuat kartu informasi profil pengguna
                                 _buildUserProfileCard(),
 
                                 const SizedBox(height: 16.0),
 
-                                // menu Grid
+                                // menyusun menu dalam bentuk grid
                                 _buildMenuGrid(),
 
                                 const SizedBox(height: 16.0),
 
-                                // transaksi terbaru
+                                // menampilkan daftar transaksi terbaru
                                 _buildRecentTransactions(),
 
                                 const SizedBox(height: 16.0),
 
-                                // bagian Bantuan
+                                // menyusun bagian bantuan pengguna
                                 _buildHelpSection(),
                               ],
                             ),
@@ -156,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
             ),
 
-            // navigasi Bawah
+            // membuat navigasi bagian bawah
             _buildBottomNavigation(),
           ],
         ),
@@ -164,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // membangun app bar
+  // membuat komponen app bar
   Widget _buildAppBar() {
     return Container(
       color: const Color(0xFF1F2937), // Main dark color for app bar
@@ -196,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // membangun tampilan error
+  // menampilkan pesan kesalahan
   Widget _buildErrorView() {
     return Center(
       child: Padding(
@@ -234,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // membangun kartu profil pengguna
+  // membuat kartu informasi profil pengguna
   Widget _buildUserProfileCard() {
     return Container(
       padding: const EdgeInsets.all(16.0),
@@ -314,7 +314,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // membangun grid menu
+  // menyusun menu dalam bentuk grid
   Widget _buildMenuGrid() {
     return Container(
       padding: const EdgeInsets.all(16.0),
@@ -387,7 +387,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // membangun daftar transaksi terbaru
+  // menampilkan daftar transaksi terbaru
   Widget _buildRecentTransactions() {
     return Container(
       padding: const EdgeInsets.all(16.0),
@@ -454,7 +454,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // membangun bagian bantuan
+  // menyusun bagian bantuan pengguna
   Widget _buildHelpSection() {
     return Container(
       padding: const EdgeInsets.all(16.0),
@@ -505,7 +505,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // membangun navigasi bawah
+  // membuat navigasi bagian bawah
   Widget _buildBottomNavigation() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
@@ -544,7 +544,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // membangun item menu
+  // membuat item menu dengan ikon dan label
   Widget _buildMenuItem({
     required IconData icon,
     required String label,
@@ -581,7 +581,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // membangun item navigasi bawah
+  // membuat item navigasi bawah
   Widget _buildBottomNavItem({
     required IconData icon,
     required String label,
@@ -609,7 +609,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // membangun tombol QR
+  // membuat tombol scan qr code
   Widget _buildQrButton(BuildContext context) {
     return InkWell(
       onTap: () {
@@ -638,7 +638,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // menampilkan dialog saldo
+  // menampilkan dialog informasi saldo
   void _showBalanceDialog() {
     showDialog(
       context: context,

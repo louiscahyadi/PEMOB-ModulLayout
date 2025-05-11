@@ -1,23 +1,26 @@
 import 'package:intl/intl.dart';
 
-// utils untuk memformat tanggal dan waktu
+/// mengimplementasikan utilitas untuk memformat tanggal dan waktu
 class DateFormatter {
-  // Memformat tanggal menjadi format "dd MMM yyyy" dalam bahasa indonesia
-  // Returns string tanggal yang diformat
+  /// mengonversi tanggal ke format "dd MMM yyyy" dalam bahasa indonesia
+  /// @param date tanggal yang akan diformat
+  /// @return string hasil format tanggal
   static String formatDate(DateTime date) {
     final formatter = DateFormat('dd MMM yyyy', 'id_ID');
     return formatter.format(date);
   }
 
-  // memformat tanggal dan waktu menjadi format "dd MMM yyyy, HH:mm" dalam bahasa indonesia
-  // returns string tanggal dan waktu yang diformat
+  /// mengonversi tanggal dan waktu ke format "dd MMM yyyy, HH:mm" dalam bahasa indonesia
+  /// @param date tanggal yang akan diformat
+  /// @return string hasil format tanggal dan waktu
   static String formatDateTime(DateTime date) {
     final formatter = DateFormat('dd MMM yyyy, HH:mm', 'id_ID');
     return formatter.format(date);
   }
 
-  // memformat tanggal menjadi format relatif terhadap waktu sekarang
-  // returns string waktu relatif
+  /// mengonversi tanggal menjadi format waktu relatif terhadap waktu sekarang
+  /// @param date tanggal yang akan diformat
+  /// @return string waktu relatif dalam bahasa indonesia
   static String formatRelative(DateTime date) {
     final now = DateTime.now();
     final difference = now.difference(date);
@@ -35,8 +38,9 @@ class DateFormatter {
     }
   }
 
-  // memformat tanggal menjadi format "EEEE, dd MMMM yyyy" dalam bahasa indonesia
-  // returns string tanggal lengkap
+  /// mengonversi tanggal ke format lengkap "EEEE, dd MMMM yyyy" dalam bahasa indonesia
+  /// @param date tanggal yang akan diformat
+  /// @return string hasil format tanggal lengkap
   static String formatFullDate(DateTime date) {
     final formatter = DateFormat('EEEE, dd MMMM yyyy', 'id_ID');
     return formatter.format(date);

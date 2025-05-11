@@ -5,7 +5,7 @@ import '../screens/forgot_password_screen.dart';
 import '../services/auth_service.dart';
 import '../utils/logger.dart';
 
-/// Layar login untuk autentikasi pengguna
+/// mengimplementasikan layar login untuk proses autentikasi pengguna
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -30,9 +30,9 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  // melakukan proses login
+  // memproses autentikasi pengguna
   Future<void> _login() async {
-    // memvalidasi form
+    // melakukan validasi input form
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -46,21 +46,21 @@ class _LoginScreenState extends State<LoginScreen> {
       final username = _usernameController.text.trim();
       final password = _passwordController.text;
 
-      Logger.info('LoginScreen: Mencoba login dengan username: $username');
+      Logger.info('menginisiasi proses login untuk pengguna: $username');
 
       final success = await _authService.login(username, password);
 
       if (success) {
-        Logger.info('LoginScreen: Login berhasil untuk pengguna: $username');
+        Logger.info('berhasil melakukan autentikasi untuk pengguna: $username');
 
-        // menavavigasi ke home screen
+        // menavigasikan pengguna ke halaman utama
         if (mounted) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (_) => const HomeScreen()),
           );
         }
       } else {
-        Logger.warning('LoginScreen: Login gagal untuk pengguna: $username');
+        Logger.warning('gagal melakukan autentikasi untuk pengguna: $username');
 
         setState(() {
           _errorMessage = 'Username atau password salah';
@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
         });
       }
     } catch (e) {
-      Logger.error('LoginScreen: Error saat login: $e');
+      Logger.error('terjadi kesalahan pada proses login: $e');
 
       setState(() {
         _errorMessage = 'Terjadi kesalahan. Silakan coba lagi.';
@@ -80,9 +80,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9FAFB), // Light gray background
+      backgroundColor: const Color(0xFFF9FAFB), // mengatur warna latar belakang
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1F2937), // Main dark color
+        backgroundColor:
+            const Color(0xFF1F2937), // mengatur warna utama aplikasi
         title: const Text('Koperasi Undiksha'),
       ),
       body: Center(
@@ -94,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // logo
+                // menampilkan logo aplikasi
                 Center(
                   child: Image.asset(
                     'assets/images/logo.png',
@@ -104,26 +105,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 32.0),
 
-                // error message
+                // menampilkan pesan error
                 if (_errorMessage != null)
                   Container(
                     padding: const EdgeInsets.all(12.0),
                     margin: const EdgeInsets.only(bottom: 16.0),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFEE2E2), // Lighter error red
+                      color: const Color(0xFFFEE2E2), // warna latar pesan error
                       borderRadius: BorderRadius.circular(4.0),
                       border: Border.all(
-                          color: const Color(0xFFFECACA)), // Error border
+                          color: const Color(
+                              0xFFFECACA)), // warna border pesan error
                     ),
                     child: Text(
                       _errorMessage!,
                       style: const TextStyle(
-                          color: Color(0xFFB91C1C)), // Error text
+                          color: Color(0xFFB91C1C)), // warna teks pesan error
                       textAlign: TextAlign.center,
                     ),
                   ),
 
-                // username field
+                // mengimplementasikan input username
                 TextFormField(
                   controller: _usernameController,
                   decoration: const InputDecoration(
@@ -138,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 16.0),
 
-                // password field
+                // mengimplementasikan input password
                 TextFormField(
                   controller: _passwordController,
                   obscureText: _obscurePassword,
@@ -166,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onFieldSubmitted: (_) => _login(),
                 ),
 
-                // forgot password link
+                // menambahkan tautan lupa password
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
@@ -178,18 +180,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     style: TextButton.styleFrom(
                       foregroundColor:
-                          const Color(0xFF1F2937), // Main dark color
+                          const Color(0xFF1F2937), // warna utama aplikasi
                     ),
                     child: const Text('Lupa Password?'),
                   ),
                 ),
                 const SizedBox(height: 24.0),
 
-                // login button
+                // mengimplementasikan tombol login
                 ElevatedButton(
                   onPressed: _isLoading ? null : _login,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1F2937), // Main dark color
+                    backgroundColor:
+                        const Color(0xFF1F2937), // warna utama aplikasi
                     padding: const EdgeInsets.symmetric(vertical: 12.0),
                     elevation: 2,
                   ),
@@ -210,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 16.0),
 
-                // register link
+                // menambahkan tautan registrasi
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).push(
@@ -218,7 +221,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                   style: TextButton.styleFrom(
-                    foregroundColor: const Color(0xFF1F2937), // Main dark color
+                    foregroundColor:
+                        const Color(0xFF1F2937), // warna utama aplikasi
                   ),
                   child: const Text('Belum punya akun? Daftar'),
                 ),

@@ -3,10 +3,9 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import '../utils/logger.dart';
 
-// service untuk mengelola notifikasi aplikasi
-// class untuk menangani inisialisasi dan pengiriman notifikasi
+// mengimplementasikan servis untuk mengelola notifikasi pada aplikasi
 class NotificationService {
-  // singleton pattern
+  // menerapkan pola singleton untuk memastikan hanya ada satu instance
   static final NotificationService _instance = NotificationService._internal();
   factory NotificationService() => _instance;
   NotificationService._internal();
@@ -15,7 +14,7 @@ class NotificationService {
       FlutterLocalNotificationsPlugin();
   bool _isInitialized = false;
 
-  // menginisialisasi service notifikasi
+  // melakukan inisialisasi konfigurasi dasar notifikasi
   Future<void> initialize() async {
     if (_isInitialized) {
       return;
@@ -44,7 +43,7 @@ class NotificationService {
     }
   }
 
-  // menampilkan notifikasi transaksi
+  // menampilkan notifikasi setelah transaksi berhasil dilakukan
   Future<void> showTransactionNotification(String title, String body) async {
     try {
       if (!_isInitialized) {
@@ -79,7 +78,7 @@ class NotificationService {
     }
   }
 
-  // menjadwalkan notifikasi untuk ditampilkan di waktu tertentu
+  // menjadwalkan notifikasi untuk ditampilkan pada waktu yang ditentukan
   Future<void> scheduleNotification(
       String title, String body, DateTime scheduledDate) async {
     try {

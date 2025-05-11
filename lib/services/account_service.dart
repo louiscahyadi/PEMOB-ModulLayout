@@ -4,10 +4,9 @@ import '../models/transaction.dart';
 import '../services/auth_service.dart';
 import '../utils/logger.dart';
 
-// service untuk mengelola rekening dan transaksi
-// class untuk menangani operasi-operasi terkait rekening seperti
+// mengelola layanan rekening dan transaksi nasabah
 class AccountService {
-  // singleton pattern
+  // mengimplementasikan pola singleton
   static final AccountService _instance = AccountService._internal();
   factory AccountService() => _instance;
   AccountService._internal();
@@ -15,8 +14,8 @@ class AccountService {
   final Uuid _uuid = const Uuid();
   final AuthService _authService = AuthService();
 
-  // data rekening demo
-  // dalam aplikasi nyata, ini akan diganti dengan database
+  // menyimpan data rekening sementara
+  // akan dimigrasi ke database pada implementasi selanjutnya
   final Map<String, Account> _accounts = {
     'account1': Account(
       id: 'account1',
@@ -27,8 +26,8 @@ class AccountService {
     ),
   };
 
-  // data transaksi demo
-  // dalam aplikasi nyata, ini akan diganti dengan database
+  // menyimpan data transaksi sementara
+  // akan dimigrasi ke database pada implementasi selanjutnya
   final List<Transaction> _transactions = [
     Transaction(
       id: 'trans1',
@@ -68,8 +67,8 @@ class AccountService {
     ),
   ];
 
-  // mendapatkan rekening pengguna yang sedang login
-  // returns objek account jika ditemukan, null jika tidak
+  // mengambil data rekening pengguna yang sedang aktif
+  // mengembalikan objek account jika ditemukan, null jika tidak ada
   Future<Account?> getCurrentUserAccount() async {
     final currentUser = _authService.currentUser;
     if (currentUser == null) {
@@ -126,8 +125,8 @@ class AccountService {
     }
   }
 
-  // mendapatkan daftar transaksi untuk rekening tertentu
-  // returns daftar transaksi
+  // mengambil riwayat transaksi berdasarkan id rekening
+  // mengembalikan daftar transaksi dengan jumlah maksimal sesuai parameter limit
   Future<List<Transaction>> getTransactions(String accountId,
       {int limit = 10}) async {
     try {
@@ -152,8 +151,8 @@ class AccountService {
     }
   }
 
-  // melakukan setoran ke rekening
-  // returns `true` jika setoran berhasil, `false` jika gagal
+  // memproses setoran ke rekening
+  // mengembalikan true jika berhasil, false jika gagal
   Future<bool> deposit(
       String accountId, double amount, String description) async {
     try {
@@ -189,8 +188,8 @@ class AccountService {
     }
   }
 
-  // melakukan penarikan dari rekening
-  // returns `true` jika penarikan berhasil, `false` jika gagal
+  // memproses penarikan dari rekening
+  // mengembalikan true jika berhasil, false jika gagal
   Future<bool> withdraw(
       String accountId, double amount, String description) async {
     try {
@@ -233,8 +232,8 @@ class AccountService {
     }
   }
 
-  // melakukan transfer antar rekening
-  // returns `true` jika transfer berhasil, `false` jika gagal
+  // memproses transfer antar rekening
+  // mengembalikan true jika berhasil, false jika gagal
   Future<bool> transfer(String fromAccountId, String toAccountId,
       String recipientName, double amount, String description) async {
     try {
@@ -295,8 +294,8 @@ class AccountService {
     }
   }
 
-  // melakukan pembayaran dari rekening
-  // returns `true` jika pembayaran berhasil, `false` jika gagal
+  // memproses pembayaran dari rekening
+  // mengembalikan true jika berhasil, false jika gagal
   Future<bool> makePayment(
       String accountId, double amount, String description) async {
     try {

@@ -35,7 +35,7 @@ class _LoanScreenState extends State<LoanScreen> {
   String _calculateMonthlyPayment() {
     try {
       final amount = double.parse(_amountController.text.replaceAll('.', ''));
-      const interestRate = 0.1; // 10% per year
+      const interestRate = 0.1; // 10% per tahun
       const monthlyInterestRate = interestRate / 12;
 
       final numerator = amount *
@@ -68,7 +68,7 @@ class _LoanScreenState extends State<LoanScreen> {
       _isLoading = true;
     });
 
-    // Simulate API call
+    // Simulasi panggilan API
     await Future.delayed(const Duration(seconds: 2));
 
     setState(() {
@@ -80,9 +80,11 @@ class _LoanScreenState extends State<LoanScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9FAFB), // Updated to lighter grey
+      backgroundColor: const Color(
+          0xFFF9FAFB), // mengatur warna latar belakang menjadi abu-abu terang
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1F2937), // Updated to main dark color
+        backgroundColor:
+            const Color(0xFF1F2937), // mengatur warna utama header aplikasi
         title: const Text('Pinjaman'),
         centerTitle: true,
       ),
@@ -98,16 +100,17 @@ class _LoanScreenState extends State<LoanScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Info Pinjaman
+            // membuat bagian informasi pinjaman
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: const Color(
-                    0xFF374151), // Updated to lighter variant of main color
+                    0xFF374151), // mengatur warna varian terang dari warna utama
                 borderRadius: BorderRadius.circular(8.0),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black
+                        .withOpacity(0.1), // menerapkan bayangan transparan
                     spreadRadius: 1,
                     blurRadius: 4,
                     offset: const Offset(0, 2),
@@ -145,7 +148,7 @@ class _LoanScreenState extends State<LoanScreen> {
 
             const SizedBox(height: 24.0),
 
-            // Form Pinjaman
+            // membuat bagian formulir pinjaman
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -196,7 +199,7 @@ class _LoanScreenState extends State<LoanScreen> {
                       return null;
                     },
                     onChanged: (value) {
-                      // Format currency as user types
+                      // Format mata uang saat pengguna mengetik
                       if (value.isNotEmpty) {
                         try {
                           final amount =
@@ -212,7 +215,7 @@ class _LoanScreenState extends State<LoanScreen> {
 
                           setState(() {});
                         } catch (e) {
-                          // Ignore formatting errors
+                          // Abaikan kesalahan format
                         }
                       }
                     },
@@ -291,7 +294,7 @@ class _LoanScreenState extends State<LoanScreen> {
 
             const SizedBox(height: 24.0),
 
-            // Simulasi Pinjaman
+            // membuat bagian simulasi pinjaman
             if (_amountController.text.isNotEmpty)
               Container(
                 padding: const EdgeInsets.all(16.0),
@@ -370,7 +373,7 @@ class _LoanScreenState extends State<LoanScreen> {
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Color(
-                                0xFF374151), // Updated monthly payment text color
+                                0xFF374151), // mengatur warna teks angsuran bulanan
                           ),
                         ),
                       ],
@@ -381,12 +384,13 @@ class _LoanScreenState extends State<LoanScreen> {
 
             const SizedBox(height: 24.0),
 
+            // membuat tombol pengajuan pinjaman
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
-                      const Color(0xFF1F2937), // Updated button color
+                      const Color(0xFF1F2937), // mengatur warna tombol
                 ),
                 onPressed: _isLoading ? null : _applyForLoan,
                 child: _isLoading
@@ -417,7 +421,7 @@ class _LoanScreenState extends State<LoanScreen> {
           children: [
             const Icon(
               Icons.check_circle_outline,
-              color: Color(0xFF374151), // Updated success icon color
+              color: Color(0xFF374151), // mengatur warna ikon sukses
               size: 80.0,
             ),
             const SizedBox(height: 24.0),

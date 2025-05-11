@@ -3,7 +3,7 @@ import '../screens/home_screen.dart';
 import '../services/auth_service.dart';
 import '../utils/logger.dart';
 
-// layar registrasi untuk mendaftarkan pengguna baru
+// mengelola tampilan untuk registrasi pengguna baru
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -35,9 +35,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
-  // melakukan proses registrasi
+  // memproses data registrasi pengguna
   Future<void> _register() async {
-    // memvalidasi form
+    // memvalidasi input form
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -98,9 +98,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9FAFB), // Light gray background
+      backgroundColor: const Color(0xFFF9FAFB), // mengatur warna latar belakang
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1F2937), // Primary dark color
+        backgroundColor: const Color(0xFF1F2937), // mengatur warna primary
         title: const Text('Daftar Akun'),
         centerTitle: true,
         elevation: 2,
@@ -112,7 +112,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // error message
+              // menampilkan pesan error jika terjadi kesalahan
               if (_errorMessage != null)
                 Container(
                   padding: const EdgeInsets.all(12.0),
@@ -131,7 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
 
-              // name field
+              // mengatur input nama lengkap
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(
@@ -145,7 +145,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 16.0),
 
-              // email field
+              // mengatur input email
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -167,7 +167,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 16.0),
 
-              // phone field
+              // mengatur input nomor telepon
               TextFormField(
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
@@ -182,7 +182,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 16.0),
 
-              // username field
+              // mengatur input username
               TextFormField(
                 controller: _usernameController,
                 decoration: const InputDecoration(
@@ -202,7 +202,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 16.0),
 
-              // password field
+              // mengatur input password
               TextFormField(
                 controller: _passwordController,
                 obscureText: _obscurePassword,
@@ -236,7 +236,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 24.0),
 
-              // register button
+              // menampilkan tombol daftar
               ElevatedButton(
                 onPressed: _isLoading ? null : _register,
                 style: ElevatedButton.styleFrom(
@@ -262,7 +262,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 16.0),
 
-              // login link
+              // menampilkan link ke halaman login
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();

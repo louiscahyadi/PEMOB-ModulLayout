@@ -1,26 +1,25 @@
-// model untuk data pengguna aplikasi
-// untuk menyimpan informasi dasar pengguna seperti id, username
-// nama lengkap, email, dan nomor telepon
+// mengimplementasikan model data pengguna
+// menyimpan data utama seperti id, username, nama, email, dan nomor telepon
 class User {
-  // ID unik pengguna
+  // menyimpan id unik pengguna
   final String id;
 
-  // username untuk login
+  // menyimpan nama pengguna untuk autentikasi
   final String username;
 
-  // nama lengkap pengguna
+  // menyimpan nama lengkap pengguna
   final String name;
 
-  // alamat email pengguna
+  // menyimpan alamat email pengguna
   final String email;
 
-  // nomor telepon pengguna
+  // menyimpan nomor telepon pengguna
   final String phoneNumber;
 
-  // URL gambar profil pengguna
+  // menyimpan url gambar profil pengguna
   final String profileImageUrl;
 
-  // constructor untuk membuat objek user baru
+  // menginisialisasi objek user baru
   User({
     required this.id,
     required this.username,
@@ -30,13 +29,13 @@ class User {
     this.profileImageUrl = '',
   });
 
-  // mengubah objek User menjadi string untuk keperluan debugging
+  // mengonversi objek user menjadi string untuk debugging
   @override
   String toString() {
     return 'User(id: $id, username: $username, name: $name, email: $email, phoneNumber: $phoneNumber)';
   }
 
-  // membuat salinan objek user dengan nilai yang diperbarui
+  // membuat salinan objek user dengan memperbarui nilai tertentu
   User copyWith({
     String? id,
     String? username,
