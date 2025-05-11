@@ -3,6 +3,7 @@ import '../models/account.dart';
 import '../services/account_service.dart';
 import '../services/notification_service.dart';
 import '../utils/currency_formatter.dart';
+import '../utils/exceptions.dart';
 
 class TransferScreen extends StatefulWidget {
   final Account account;
@@ -77,8 +78,18 @@ class _TransferScreenState extends State<TransferScreen> {
         });
       }
     } catch (e) {
-      print('Error transferring: $e');
-      _showErrorDialog('Terjadi kesalahan. Silakan coba lagi.');
+      debugPrint('Transfer error: ${e.toString()}');
+      String errorMessage = 'Terjadi kesalahan pada sistem.';
+
+      if (e is FormatException) {
+        errorMessage = 'Format jumlah transfer tidak valid.';
+      } else if (e is NetworkException) {
+        errorMessage = e.message;
+      } else if (e is TransferException) {
+        errorMessage = e.message;
+      }
+
+      _showErrorDialog(errorMessage);
       setState(() {
         _isLoading = false;
       });
